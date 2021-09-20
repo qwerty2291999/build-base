@@ -19,5 +19,15 @@ class ERROR extends Error {
         this.code = HTTP_CODE.UNAUTHORIZED
         return this
     }
+    wrongUsernameOrPassword() {
+        this.message = 'Wrong username or password'
+        this.code = HTTP_CODE.UNAUTHORIZED
+        return this
+    }
+    notFoundURL(path) {
+        this.message = `Requested URL not found ${path}`
+        this.code = HTTP_CODE.NOT_FOUND
+        return this
+    }
 }
 export default ERROR

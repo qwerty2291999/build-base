@@ -31,10 +31,8 @@ app.use((err, req, res, next) => {
     res.status(err.code).send({ message: err.message })
 })
 app.all('*', (req, res) => {
-    const err = new Error(`Requested URL ${req.path} not found`)
-    res.status(404).send({
-        message: err.message
-    })
+    const urlErr = err.notFoundURL(req.path)
+    res.status(urlErr.code).send({ message: urlErr.message })
 })
 //Server
 app.listen(config.app.port, () => {
