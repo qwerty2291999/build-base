@@ -2,6 +2,7 @@ import { HTTP_CODE } from '../../errors/httpCode.js'
 import ERROR from '../../errors/errors.js'
 import AuthServices from './auth.services.js'
 import * as validation from './auth.validation.js'
+import jwt from 'jsonwebtoken'
 const AuthService = new AuthServices()
 const err = new ERROR()
 
@@ -16,7 +17,16 @@ export const login = async function (req, res, next) {
         if (doc.message) {
             next(doc)
         } else {
-            res.status(HTTP_CODE.OK).json(doc)
+            const token = jwt.sign(
+                {
+                    userId: doc._id,
+                    username: doc.username,
+                    email: doc.email,
+                    status: doc.status
+                },
+                process.env.JWT_SECRET
+            )
+            res.status(HTTP_CODE.OK).json(token)
         }
     }
 }
@@ -40,4 +50,7 @@ export const register = async function (req, res, next) {
             res.status(HTTP_CODE.CREATED).json(doc)
         }
     }
+}
+export const test = async function (req, res, next) {
+    res.json('test')
 }

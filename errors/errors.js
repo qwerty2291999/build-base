@@ -24,5 +24,20 @@ class ERROR extends Error {
         this.code = HTTP_CODE.NOT_FOUND
         return this
     }
+    invalidToken() {
+        this.message = `Invalid Token`
+        this.code = HTTP_CODE.UNAUTHORIZED
+        return this
+    }
+    cannotDecode() {
+        this.message = `Failed to decode jwt`
+        this.code = HTTP_CODE.UNAUTHORIZED
+        return this
+    }
+    needToVerify() {
+        this.message = `Please verify your account first`
+        this.code = HTTP_CODE.UNAUTHORIZED
+        return this
+    }
 }
 export default ERROR

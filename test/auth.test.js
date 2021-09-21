@@ -4,17 +4,18 @@ import app from './index-test.js'
 import chai from 'chai'
 import chaiHttp from 'chai-http'
 chai.use(chaiHttp)
+const should = chai.should()
 
 describe('/test Auth login/register API', () => {
     it('test success register', done => {
         chai.request(app)
             .post('/auth/register')
             .send({
-                username: 'testAccount2',
+                username: 'testAccount1',
                 password: '123',
                 repeat_password: '123',
                 name: 'duong van long',
-                email: 'testAccount2@gmail.com'
+                email: 'testAccount1@gmail.com'
             })
             .end((err, res) => {
                 res.should.have.status(201)
@@ -27,11 +28,11 @@ describe('/test Auth login/register API', () => {
         chai.request(app)
             .post('/auth/register')
             .send({
-                username: 'long2291999',
+                username: 'testAccount',
                 password: '123',
                 repeat_password: '123',
                 name: 'duong van long',
-                email: 'blackcat22.ngu@gmail.com'
+                email: 'testAccount@gmail.com'
             })
             .end((err, res) => {
                 res.should.have.status(406)
@@ -43,7 +44,7 @@ describe('/test Auth login/register API', () => {
         chai.request(app)
             .post('/auth/login')
             .send({
-                email: 'blackcat22.ngu@gmail.com',
+                email: 'testAccount@gmail.com',
                 password: '123'
             })
             .end((err, res) => {

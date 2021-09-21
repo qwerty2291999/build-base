@@ -13,6 +13,7 @@ module.exports = {
         'spaced-comment': ['error', 'always', { markers: ['/'] }],
         'no-trailing-spaces': 'error',
         camelcase: ['error', { properties: 'never' }],
-        'space-before-function-paren': ['error', 'ignore']
+        'space-before-function-paren': ['error', 'ignore'],
+        'no-console': 'error'
     }
 }

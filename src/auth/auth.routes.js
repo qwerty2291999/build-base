@@ -1,5 +1,6 @@
 import express from 'express'
-import { login, register } from './auth.controller.js'
+import { login, register, test } from './auth.controller.js'
+import { Auth } from './auth.middlware.js'
 
 /**
  * @swagger
@@ -14,5 +15,6 @@ const app = express.Router()
 
 app.post('/auth/login', login)
 app.post('/auth/register', register)
+app.get('/auth/test', Auth, test)
 
 export default app
