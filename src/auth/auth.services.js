@@ -1,6 +1,7 @@
 import AuthData from './auth.data.js'
 import bcrypt from 'bcrypt'
 import ERROR from '../../errors/errors.js'
+import { sendMail } from './auth.mailer.js'
 const err = new ERROR()
 const data = new AuthData()
 class AuthServices {
@@ -34,6 +35,11 @@ class AuthServices {
     }
     async register(obj) {
         const doc = await data.register(obj)
+        await sendMail(doc.email)
+        return doc
+    }
+    async verify(email) {
+        const doc = await data.verify(email)
         return doc
     }
 }

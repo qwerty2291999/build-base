@@ -2,40 +2,40 @@ import Mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 export const STATUS = {
     FALSE: 'Need to verify',
-    TRUE: 'Verified',
+    TRUE: 'Verified'
 }
 const UsersSchema = Mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     username: {
         type: String,
         unique: true,
-        required: true,
+        required: true
     },
     password: {
         type: String,
-        required: true,
+        required: true
     },
     email: {
         type: String,
         unique: true,
-        required: true,
+        required: true
     },
     createdAt: {
         type: Date,
         default: Date.now(),
-        required: true,
+        required: true
     },
     updatedAt: {
-        type: Date,
+        type: Date
     },
     status: {
         type: String,
         enum: STATUS,
-        default: STATUS.FALSE,
-    },
+        default: STATUS.FALSE
+    }
 })
 UsersSchema.pre('save', async function (next) {
     const saltRounds = 10
